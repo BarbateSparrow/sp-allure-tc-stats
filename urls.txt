@@ -1,0 +1,16 @@
+# Office365 
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-grid-mode/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-live-mode/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-dashboard/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-theme-builder-modern/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-templates/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-first-user-experience/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-office-migration/reports/RUN_NUMBER/index.html
+
+# SP2019
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-sp2019-grid-mode/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-sp2019-live-mode/reports/RUN_NUMBER/index.html 
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-sp2019-dashboard/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-sp2019-theme-builder-modern/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-sp2019-theme-builder-classic/reports/RUN_NUMBER/index.html
+# http://172.191.28.115:4446/allure-docker-service/projects/regression-sp2019-templates/reports/RUN_NUMBER/index.html
