@@ -14,7 +14,7 @@ report with per-test-case statistics: **TC**, **Total Runs**, **Failed**
 ```bash
 # 1. Clone the repo (HTTPS)
 git clone https://github.com/BarbateSparrow/sp-allure-tc-stats.git
-cd allure-tc-stats
+cd sp-allure-tc-stats
 
 # 2. Create a virtual environment
 #    Windows (PowerShell):
@@ -25,36 +25,36 @@ python -m venv .venv
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 3. Install the single dependency
-pip install -r requirements.txt
+# 3. Install the package (editable mode)
+pip install -e .
 ```
 
 ## Run
 
 Single report:
 ```bash
-python allure_tc_stats.py \
-    "http://host:4446/allure-docker-service/projects/regression-office-dashboard/reports/20/index.html#"
+allure-stats \
+    "http://http://172.191.28.115:4446/allure-docker-service/projects/regression-office-dashboard/reports/20/index.html"
 ```
 
 Multiple reports:
 ```bash
-python allure_tc_stats.py URL1 URL2 URL3 --out ./reports
+allure-stats URL1 URL2 URL3 --out ./reports
 ```
 
 Many URLs from a file (one URL per line, `#` for comments):
 ```bash
-python allure_tc_stats.py --urls-file urls.txt --out ./reports
+allure-stats --urls-file urls.txt --out ./reports
 ```
 
 CSVs are written to `./reports/<project>_report-<n>.csv`.
 
 ## Update to the latest version
 ```bash
-cd allure-tc-stats
+cd sp-allure-tc-stats
 git pull
 # Re-activate the virtualenv if needed, then:
-pip install -r requirements.txt   # only if dependencies changed
+pip install -e .
 ```
 
 ## Options

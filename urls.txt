@@ -1,3 +1,6 @@
+# RUN_NUMBER could be found in #qa-automation Slack channel.
+# To uncomment line remove {#}. 
+
 # Office365 
 # http://172.191.28.115:4446/allure-docker-service/projects/regression-office-grid-mode/reports/RUN_NUMBER/index.html
 # http://172.191.28.115:4446/allure-docker-service/projects/regression-office-live-mode/reports/RUN_NUMBER/index.html
