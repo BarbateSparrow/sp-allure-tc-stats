@@ -190,10 +190,12 @@ def _sort_rank(c: dict[str, int]) -> int:
     return 3
 
 
-def write_csv(rows: list[dict[str, str]], path: Path) -> None:
+def write_csv(rows: list[dict[str, str]], path: Path, fieldnames: list[str] | None = None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    if fieldnames is None:
+        fieldnames = ["TC", "Total Runs", "Failed", "Success Rate"]
     with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["TC", "Total Runs", "Failed", "Success Rate"])
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
     print(f"[+] Wrote {len(rows)} rows -> {path}")
@@ -231,6 +233,16 @@ def parse_args() -> argparse.Namespace:
         default=30,
         help="HTTP timeout per request in seconds (default: 30).",
     )
+    p.add_argument(
+        "--combined",
+        action="store_true",
+        help="Also produce combined.csv with a Report column.",
+    )
+    p.add_argument(
+        "--merged",
+        action="store_true",
+        help="Also produce merged.csv without a Report column.",
+    )
     return p.parse_args()
 
 
@@ -257,15 +269,30 @@ def main() -> int:
     out_dir = Path(args.out)
 
     exit_code = 0
+    all_rows: list[dict[str, str]] = []
     for url in urls:
         try:
             rows = process_report(url, session, workers=args.workers)
             base = normalize_report_base(url)
-            csv_path = out_dir / f"{report_slug(base)}.csv"
+            slug = report_slug(base)
+            csv_path = out_dir / f"{slug}.csv"
             write_csv(rows, csv_path)
+            for row in rows:
+                all_rows.append({"Report": slug, **row})
         except Exception as exc:  # noqa: BLE001
             print(f"[!] Failed to process {url}: {exc}", file=sys.stderr)
             exit_code = 1
+
+    if args.combined and len(all_rows) > 0:
+        combined_path = out_dir / "combined.csv"
+        write_csv(all_rows, combined_path,
+                  fieldnames=["Report", "TC", "Total Runs", "Failed", "Success Rate"])
+
+    if args.merged and len(all_rows) > 0:
+        merged_rows = [{k: v for k, v in row.items() if k != "Report"} for row in all_rows]
+        merged_path = out_dir / "merged.csv"
+        write_csv(merged_rows, merged_path)
+
     return exit_code
 
 

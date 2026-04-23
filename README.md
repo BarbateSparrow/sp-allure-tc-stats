@@ -34,7 +34,7 @@ pip install -e .
 Single report:
 ```bash
 allure-stats \
-    "http://http://172.191.28.115:4446/allure-docker-service/projects/regression-office-dashboard/reports/20/index.html"
+    "http://host:4446/allure-docker-service/projects/regression-office-dashboard/reports/20/index.html#"
 ```
 
 Multiple reports:
@@ -65,3 +65,5 @@ pip install -e .
 | `--urls-file` | –           | Text file with one URL per line       |
 | `--workers`   | `16`        | Parallel HTTP workers per report      |
 | `--timeout`   | `30`        | Per-request timeout in seconds        |
+| `--combined`  | off         | Also produce `combined.csv` with a Report column |
+| `--merged`    | off         | Also produce `merged.csv` without a Report column |
